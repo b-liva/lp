@@ -3,20 +3,43 @@ from decorators import do_twice, do_twice_with_return
 """
 Thanks to: https://realpython.com/primer-on-python-decorators/
 
-Returning Values From Decorated Functions 
-What happens to the return value of decorated functions? Well, that’s up to
-the decorator to decide. Let’s say you decorate a simple function as follows
+Who Are You, Really? 
+A great convenience when working with Python, especially in the interactive shell, 
+is its powerful introspection ability. Introspection is the ability of an object to know about its own attributes at 
+runtime. For instance, a function knows its own name and documentation 
 
-To fix this, you need to make sure the wrapper function returns the return value of the decorated function.
+The introspection works for functions you define yourself as well
 """
 
 
-@do_twice_with_return
 def return_greeting(name):
     print("Creating greeting")
     return f"Hi {name}"
 
 
+@do_twice_with_return
+def say_whee():
+    print('Whee')
+
+
 if __name__ == "__main__":
-    print(return_greeting("Adam"))
-    """The return value from the last execution of the function is returned. """
+    print(print)
+    print(print.__name__)
+    print("help: ")
+    print(help(print))
+
+    print('******** about greeting ************')
+    print(return_greeting)
+    print(return_greeting.__name__)
+    print("help:")
+    print(help(return_greeting))
+
+    """However, after being decorated, say_whee() has gotten very confused about its identity. It now reports being 
+    the wrapper_do_twice() inner function inside the do_twice() decorator. Although technically true, this is not 
+    very useful information. """
+
+    print('******** about say whee ************')
+    print(say_whee)
+    print(say_whee.__name__)
+    print("help:")
+    print(help(say_whee))
