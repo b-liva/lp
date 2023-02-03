@@ -1,4 +1,4 @@
-from decorators import do_twice, do_twice_with_return
+from decorators import do_twice
 
 """
 Thanks to: https://realpython.com/primer-on-python-decorators/
@@ -9,35 +9,18 @@ is its powerful introspection ability. Introspection is the ability of an object
 runtime. For instance, a function knows its own name and documentation 
 
 The introspection works for functions you define yourself as well
-"""
+
+To fix this, decorators should use the @functools.wraps decorator, which will preserve information about the original 
+function. Update decorators.py again """
 
 
-def return_greeting(name):
-    print("Creating greeting")
-    return f"Hi {name}"
-
-
-@do_twice_with_return
+@do_twice
 def say_whee():
     print('Whee')
 
 
 if __name__ == "__main__":
-    print(print)
-    print(print.__name__)
-    print("help: ")
-    print(help(print))
-
-    print('******** about greeting ************')
-    print(return_greeting)
-    print(return_greeting.__name__)
-    print("help:")
-    print(help(return_greeting))
-
-    """However, after being decorated, say_whee() has gotten very confused about its identity. It now reports being 
-    the wrapper_do_twice() inner function inside the do_twice() decorator. Although technically true, this is not 
-    very useful information. """
-
+    # Much better! Now say_whee() is still itself after decoration.
     print('******** about say whee ************')
     print(say_whee)
     print(say_whee.__name__)
