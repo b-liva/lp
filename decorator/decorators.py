@@ -1,10 +1,16 @@
 import functools
 
+"""
+This formula is a good boilerplate template for building more complex decorators.
+"""
 
-def do_twice(func):
+
+def decorator(func):
     @functools.wraps(func)
-    def wrapper_do_twice(*args, **kwargs):
-        func(*args, **kwargs)
-        return func(*args, **kwargs)
+    def wrapper_decorator(*args, **kwargs):
+        # Do something before
+        value = func(*args, **kwargs)
+        # Do something after
+        return value
 
-    return wrapper_do_twice
+    return wrapper_decorator
