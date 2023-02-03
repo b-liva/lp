@@ -1,20 +1,19 @@
-import math
-from decorators import debug
+from decorators import slow_down
 
 """
 Thanks to: https://realpython.com/primer-on-python-decorators/
-
-Debugging Code 
-More useful info.
+Slowing Down Code: example
  """
 
-# Apply a decorator to a standard library function
-math.factorial = debug(math.factorial)
 
-
-def approximate_e(terms=18):
-    return sum(1 / math.factorial(n) for n in range(terms))
+@slow_down
+def countdown(from_number):
+    if from_number < 1:
+        print("Liftoff!")
+    else:
+        print(from_number)
+        countdown(from_number - 1)
 
 
 if __name__ == "__main__":
-    approximate_e(5)
+    countdown(3)
