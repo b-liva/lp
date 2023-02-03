@@ -17,6 +17,7 @@
     [*] - Is the User Logged In?
 ## Fancy Decorators
     [*] - Decorating Classes
-        [*] - There are two different ways you can use decorators on classes. The first one is very close to
+        [*] - There are two different ways you can use decorators on classes. 
         [*] - Decorating the whole class
-    [] - Nesting Decorators
+    [*] - Nesting Decorators
+    [] - Decorators With Arguments

@@ -1,29 +1,23 @@
-from decorator.decorators import do_twice, debug
+from decorator.decorators import do_twice, debug, repeat
 
 """
 Thanks to: https://realpython.com/primer-on-python-decorators/
 
-Nesting Decorators 
-You can apply several decorators to a function by stacking them on top of each other Think about 
-this as the decorators being executed in the order they are listed. In other words, @debug calls @do_twice, 
-which calls greet(), or debug(do_twice(greet())) """
+Decorators With Arguments 
+Sometimes, it’s useful to pass arguments to your decorators. For instance, @do_twice could 
+be extended to a @repeat(num_times) decorator. The number of times to execute the decorated function could then be 
+given as an argument 
+
+So far, the name written after the @ has referred to a function object that can be called with another function. To 
+be consistent, you then need repeat(num_times=4) to return a function object that can act as a decorator """
 
 
 # Equals to debug(do_twice(greet())
 
-@debug
-@do_twice
+@repeat(num_times=4)
 def greet(name):
     print(f"Hello {name}")
 
 
-@do_twice
-@debug
-def greet_inverse(name):
-    print(f"Hello {name}")
-
-
 if __name__ == "__main__":
-    greet("Eva")
-    print("*****************")
-    greet_inverse("Eva")
+    greet("World")
