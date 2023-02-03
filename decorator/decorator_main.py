@@ -1,6 +1,4 @@
-from dataclasses import dataclass  # python3.7 or later
-
-from decorator.circle import Circle
+from decorator.decorators import timer
 
 """
 Thanks to: https://realpython.com/primer-on-python-decorators/
@@ -18,29 +16,26 @@ Let’s define a class where we decorate some of its methods using the @debug an
 
 [] - Decorating the whole class
 
+Writing a class decorator is very similar to writing a function decorator. The only difference is that the decorator 
+will receive a class and not a function as an argument. In fact, all the decorators you saw above will work as class 
+decorators. When you are using them on a class instead of a function, their effect might not be what you want. In the 
+following example, the @timer decorator is applied to a class
+
+Here, @timer only measures the time it takes to instantiate the class Later, you will see an example defining a 
+proper class decorator, namely @singleton, which ensures that there is only one instance of a class 
+
  """
 
-from decorators import debug, timer
 
-
-class TimeWaster:
-    @debug
+@timer
+class TimeWaster:  # Equals to TimeWaster = timer(TimeWaster)
     def __init__(self, max_num):
         self.max_num = max_num
 
-    @timer
     def waste_time(self, num_times):
         for _ in range(num_times):
             sum([i ** 2 for i in range(self.max_num)])
 
-
-@dataclass
-class PlayingCard:  # alt-1
-    rank: str
-    suit: str
-
-
-PlayingCard = dataclass(PlayingCard)  # alt-2
 
 if __name__ == "__main__":
     tw = TimeWaster(1000)
