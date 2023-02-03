@@ -1,22 +1,28 @@
+from decorator.circle import Circle
+
 """
 Thanks to: https://realpython.com/primer-on-python-decorators/
 
-Is the User Logged In?
-The final example before moving on to some fancier decorators is commonly used when working
-with a web framework. In this example, we are using Flask to set up a /secret web page that should only be visible to 
-users that are logged in or otherwise authenticated
+Decorating Classes
+There are two different ways you can use decorators on classes. The first one is very close to
+what you have already done with functions: you can decorate the methods of a class. This was one of the motivations
+for introducing decorators back in the day.
 
-While this gives an idea about how to add authentication to your web framework, you should usually not write these
-types of decorators yourself. For Flask, you can use the Flask-Login extension instead, which adds more security and
-functionality """
-from flask import Flask
+Some commonly used decorators that are even built-ins in Python are @classmethod, @staticmethod, and @property. The
+@classmethod and @staticmethod decorators are used to define methods inside a class namespace that are not connected
+to a particular instance of that class. The @property decorator is used to customize getters and setters for class
+attributes. Expand the box below for an example using these decorators. """
 
-from decorator.decorators import login_required
-
-app = Flask(__name__)
-
-
-@app.route("/secret")
-@login_required
-def secret():
-    ...
+if __name__ == "__main__":
+    c = Circle(5)
+    print(c.radius)
+    print(c.area)
+    c.radius = 2
+    print(c.area)
+    # c.area = 4 # This can not be done.
+    print(c.cylinder_volume(height=4))
+    c = Circle.unit_circle()
+    print(c.radius)
+    print(c.pi())
+    print(Circle.pi())
+    c.radius = -1
