@@ -11,18 +11,24 @@ for introducing decorators back in the day.
 Some commonly used decorators that are even built-ins in Python are @classmethod, @staticmethod, and @property. The
 @classmethod and @staticmethod decorators are used to define methods inside a class namespace that are not connected
 to a particular instance of that class. The @property decorator is used to customize getters and setters for class
-attributes. Expand the box below for an example using these decorators. """
+attributes. Expand the box below for an example using these decorators. 
+Let’s define a class where we decorate some of its methods using the @debug and @timer decorators from
+"""
+
+from decorators import debug, timer
+
+
+class TimeWaster:
+    @debug
+    def __init__(self, max_num):
+        self.max_num = max_num
+
+    @timer
+    def waste_time(self, num_times):
+        for _ in range(num_times):
+            sum([i ** 2 for i in range(self.max_num)])
+
 
 if __name__ == "__main__":
-    c = Circle(5)
-    print(c.radius)
-    print(c.area)
-    c.radius = 2
-    print(c.area)
-    # c.area = 4 # This can not be done.
-    print(c.cylinder_volume(height=4))
-    c = Circle.unit_circle()
-    print(c.radius)
-    print(c.pi())
-    print(Circle.pi())
-    c.radius = -1
+    tw = TimeWaster(1000)
+    tw.waste_time(999)
