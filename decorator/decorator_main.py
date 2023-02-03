@@ -1,42 +1,22 @@
-import random
-
-from decorators import register, PLUGINS
-
 """
 Thanks to: https://realpython.com/primer-on-python-decorators/
 
-Registering Plugins 
-Decorators don’t have to wrap the function they’re decorating. They can also simply register that 
-a function exists and return it unwrapped. This can be used, for instance, to create a light-weight plug-in 
-architecture 
+Is the User Logged In?
+The final example before moving on to some fancier decorators is commonly used when working
+with a web framework. In this example, we are using Flask to set up a /secret web page that should only be visible to 
+users that are logged in or otherwise authenticated
 
-The @register decorator simply stores a reference to the decorated function in the global PLUGINS dict. Note that you 
-do not have to write an inner function or use @functools.wraps in this example because you are returning the original 
-function unmodified. 
+While this gives an idea about how to add authentication to your web framework, you should usually not write these
+types of decorators yourself. For Flask, you can use the Flask-Login extension instead, which adds more security and
+functionality """
+from flask import Flask
 
-The randomly_greet() function randomly chooses one of the registered functions to use. Note that the PLUGINS 
-dictionary already contains references to each function object that is registered as a plugin Using the @register 
-decorator, you can create your own curated list of interesting variables, effectively hand-picking some functions 
-from globals() """
+from decorator.decorators import login_required
 
-
-@register
-def say_hello(name):
-    return f"Hello {name}"
+app = Flask(__name__)
 
 
-@register
-def be_awesome(name):
-    return f"Yo {name}, together we are the awesomest!"
-
-
-def randomly_greet(name):
-    greeter, greeter_func = random.choice(list(PLUGINS.items()))
-    print(f"Using {greeter!r}")
-    return greeter_func(name)
-
-
-if __name__ == "__main__":
-    print(PLUGINS)
-    randomly_greet('Alice')
-    print(globals())
+@app.route("/secret")
+@login_required
+def secret():
+    ...
