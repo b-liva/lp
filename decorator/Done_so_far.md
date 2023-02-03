@@ -20,4 +20,13 @@
         [*] - There are two different ways you can use decorators on classes. 
         [*] - Decorating the whole class
     [*] - Nesting Decorators
-    [] - Decorators With Arguments
+    [*] - Decorators With Arguments
+    [] - Both Please, But Never Mind the Bread
+    [] - Stateful Decorators
+    [] - Classes as Decorators
+## More Real World Examples
+    [] - Slowing Down Code, Revisited
+    [] - Creating Singletons
+    [] - Caching Return Values
+    [] - Adding Information About Units
+    [] - Validating JSON
