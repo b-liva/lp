@@ -1,18 +1,22 @@
-from decorators import timer
+from decorators import debug
 
 """
 Thanks to: https://realpython.com/primer-on-python-decorators/
 
-Timing Functions 
-Let’s start by creating a @timer decorator. It will measure the time a function takes to execute and 
-print the duration to the console. """
+Debugging Code 
+The following @debug decorator will print the arguments a function is called with as well as its 
+return value every time the function is called """
 
 
-@timer
-def waste_some_time(num_times):
-    for _ in range(num_times):
-        sum([i**2 for i in range(10000)])
+@debug
+def make_greeting(name, age=None):
+    if age is None:
+        return f"Howdy {name}!"
+    else:
+        return f"Whoa {name}! {age} already, you are growing up!"
 
 
 if __name__ == "__main__":
-    waste_some_time(500)
+    make_greeting("Benjamin")
+    make_greeting("Richard", age=112)
+    make_greeting(name="Dorrisile", age=116)
