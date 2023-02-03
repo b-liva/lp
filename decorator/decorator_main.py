@@ -1,16 +1,18 @@
-from decorators import decorator
+from decorators import timer
 
 """
 Thanks to: https://realpython.com/primer-on-python-decorators/
 
-A Few Real World Examples Let’s look at a few more useful examples of decorators. You’ll notice that they’ll mainly 
-follow the same pattern that you’ve learned so far. """
+Timing Functions 
+Let’s start by creating a @timer decorator. It will measure the time a function takes to execute and 
+print the duration to the console. """
 
 
-@decorator
-def say_whee():
-    print('Whee')
+@timer
+def waste_some_time(num_times):
+    for _ in range(num_times):
+        sum([i**2 for i in range(10000)])
 
 
 if __name__ == "__main__":
-    say_whee()
+    waste_some_time(500)
