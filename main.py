@@ -1,31 +1,37 @@
 """
 Thanks to: https://realpython.com/primer-on-python-decorators/
 
-Inner Functions
-It’s possible to define functions inside other functions.
-Such functions are called inner functions. Here’s an example of a function with two inner functions
-Note that the order in which the inner functions are defined does not matter. Like with any other functions, the printing only happens when the inner functions are executed.
+Returning Functions From Functions
+Python also allows you to use functions as return values.
+The following example returns one of the inner functions from the outer parent() function
 
-Furthermore, the inner functions are not defined until the parent function is called.
-They are locally scoped to parent(): they only exist inside the parent() function as local variables.
-Try calling first_child(). You should get an error
-Whenever you call parent(), the inner functions first_child() and second_child() are also called. But because of their local scope, they aren’t available outside of the parent() function.
+The somewhat cryptic output simply means that the first variable refers to the local first_child() function inside of
+parent(), while second points to second_child().
+
+You can now use first and second as if they are regular functions, even though the functions they point to can’t be
+accessed directly Finally, note that in the earlier example you executed the inner functions within the parent
+function, for instance first_child(). However, in this last example, you did not add parentheses to the inner
+functions—first_child—upon returning. That way, you got a reference to each function that you could call in the
+future. Make sense?
 """
 
 
-def parent():
-    print("Printing from the parent() function")
-
+def parent(num):
     def first_child():
-        print("Printing from the first_child() function")
+        return "Hi, I am Emma"
 
     def second_child():
-        print("Printing from the second_child() function")
+        return "Call me Liam"
 
-    second_child()
-    first_child()
+    if num == 1:
+        return first_child
+    else:
+        return second_child
 
 
 if __name__ == "__main__":
-    parent()
-    first_child()
+    first = parent(1)
+    second = parent(2)
+    print(first)
+    print(second)
+
