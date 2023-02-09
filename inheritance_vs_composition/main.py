@@ -1,5 +1,5 @@
 """
-What Are Inheritance and Composition?
+Abstract Base Classes in Python
 Inheritance and composition are two major concepts in object-oriented programming that model the relationship between
 two classes. They drive the design of an application and determine how the application should evolve as new features are
  added
